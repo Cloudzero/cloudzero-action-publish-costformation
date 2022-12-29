@@ -6,6 +6,17 @@ It will only perform a full publish when running on a specified branch
 # Usage
 
 ```yaml
+      - name: <name>
+        uses: Cloudzero/cloudzero-action-publish-costformation@v1
+        with:
+          file: <path to definitions file>
+          api-key: <ClouerZero platform API key (should be taken from environment secrets)>
+          validate-only: <true|false>
+```
+
+# Example
+
+```yaml
 
 # Example workflow using publish actions
 
@@ -42,3 +53,6 @@ jobs:
           validate-only: false
 
 ```
+
+In the above example `secrets.CZ_API_KEY` is the organization's API key for the CloudZero platform and is stored in the environment `production`.
+The definitions are only published when pushed to the branch `main` and all other branches perform validation of the definitions.
