@@ -1,0 +1,29 @@
+name: 'Publish CostFormation Definitions'
+description: 'Publish a set of CostFormation dimensions to the CloudZero platform.'
+inputs:
+  file:
+    description: The file containing the definitions
+    required: true
+  api-key:
+    description: Your organizations API Key for accessing CloudZero APIs (this should be stored as a secret)
+    required: true
+  host:
+    description: The host address of the CloudZero platform
+    default: api.cloudzero.com
+outputs:
+  results:
+    description: The results from the API call.
+    value: ${{ steps.execute-curl.outputs.response }}
+runs:
+  using: "composite"
+  steps:
+    - if: github.ref != 'main'
+      run: echo "?validate_only=True" >> $CZ_VALIDATE_ONLY
+      shell: bash
+    - if: github.ref == 'main'
+      run: echo "?validate_only=1" >> $CZ_VALIDATE_ONLY
+      shell: bash
+    - id: execute-curl
+      run: |
+        echo "response=$(curl --fail-with-body --request POST --url https://${{ inputs.host }}/v2/dimensions/definition/versions?validate_only=${{ env.CZ_VALIDATE_ONLY }} -F data=@${{ inputs.file }} --header 'Content-Type: multipart/form-data' --header 'Authorization: ${{ inputs.api-key }}')"
+      shell: bash
