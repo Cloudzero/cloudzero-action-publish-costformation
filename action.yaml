@@ -1,0 +1,22 @@
+name: 'Publish Dimensions Definition Version'
+description: 'Publish a new version of CostFormation dimensions to the CloudZero platform.'
+inputs:
+  file:
+    description: The file containing the definitions
+    required: true
+  api-key:
+    description: Your organizations API Key for accessing CloudZero APIs (this should be stored as a secret)
+    required: true
+  validate-only:
+    description: If set to 'true', it will only validate the definitions. If set to 'false', then it will publish them
+    default: 'false'
+  host:
+    description: The host address of the CloudZero platform
+    default: api.cloudzero.com
+runs:
+  using: "composite"
+  steps:
+    - id: execute-curl
+      run: |
+        curl --fail-with-body --request POST --url https://${{ inputs.host }}/v2/dimensions/definition/versions?validate_only=${{ inputs.validate-only }} -F data=@${{ inputs.file }} --header 'Content-Type: multipart/form-data' --header 'Authorization: ${{ inputs.api-key }}'
+      shell: bash
