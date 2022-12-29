@@ -23,5 +23,5 @@ runs:
       shell: bash
     - id: execute-curl
       run: |
-        echo "response=$(curl --fail-with-body --request POST --url https://${{ inputs.host }}/v2/dimensions/definition/versions?validate_only=${{ steps.validate-only.outputs.query_var }} -F data=@${{ inputs.file }} --header 'Content-Type: multipart/form-data' --header 'Authorization: ${{ inputs.api-key }}')"
+        echo "response=$(curl --fail-with-body --request POST --url https://${{ inputs.host }}/v2/dimensions/definition/versions${{ steps.validate-only.outputs.query_var }} -F data=@${{ inputs.file }} --header 'Content-Type: multipart/form-data' --header 'Authorization: ${{ inputs.api-key }}')"
       shell: bash
