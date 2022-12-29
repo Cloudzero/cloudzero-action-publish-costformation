@@ -1,5 +1,5 @@
-name: 'Publish CostFormation Definitions'
-description: 'Publish a set of CostFormation dimensions to the CloudZero platform.'
+name: 'Publish Dimensions Definition Version'
+description: 'Publish a new version of CostFormation dimensions to the CloudZero platform.'
 inputs:
   file:
     description: The file containing the definitions
