@@ -31,7 +31,7 @@ jobs:
         with:
           file: src/definitions.cz.yaml
           api-key: ${{ secrets.CZ_API_KEY }}
-          validate-only: false
+          validate-only: true
 
       - name: Publish Definitions
         if: github.ref == 'main'
