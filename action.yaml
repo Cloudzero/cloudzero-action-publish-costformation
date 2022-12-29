@@ -10,10 +10,6 @@ inputs:
   host:
     description: The host address of the CloudZero platform
     default: api.cloudzero.com
-outputs:
-  results:
-    description: The results from the API call.
-    value: ${{ steps.execute-curl.outputs.response }}
 runs:
   using: "composite"
   steps:
@@ -23,5 +19,5 @@ runs:
       shell: bash
     - id: execute-curl
       run: |
-        echo "response=$(curl --fail-with-body --request POST --url https://${{ inputs.host }}/v2/dimensions/definition/versions${{ steps.validate-only.outputs.query_var }} -F data=@${{ inputs.file }} --header 'Content-Type: multipart/form-data' --header 'Authorization: ${{ inputs.api-key }}')"
+        curl --fail-with-body --request POST --url https://${{ inputs.host }}/v2/dimensions/definition/versions${{ steps.validate-only.outputs.query_var }} -F data=@${{ inputs.file }} --header 'Content-Type: multipart/form-data' --header 'Authorization: ${{ inputs.api-key }}')
       shell: bash
