@@ -14,7 +14,7 @@ runs:
   using: "composite"
   steps:
     - id: validate-only
-      if: github.ref == 'main'
+      if: github.ref != 'main'
       run: echo "query_var=?validate_only=True" >> $GITHUB_OUTPUT
       shell: bash
     - id: execute-curl
