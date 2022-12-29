@@ -7,17 +7,16 @@ inputs:
   api-key:
     description: Your organizations API Key for accessing CloudZero APIs (this should be stored as a secret)
     required: true
+  validate-only:
+    description: If set to 'true', it will only validate the definitions. If set to 'false', then it will publish them
+    default: 'false'
   host:
     description: The host address of the CloudZero platform
     default: api.cloudzero.com
 runs:
   using: "composite"
   steps:
-    - id: validate-only
-      if: github.ref != 'main'
-      run: echo "query_var=?validate_only=True" >> $GITHUB_OUTPUT
-      shell: bash
     - id: execute-curl
       run: |
-        curl --fail-with-body --request POST --url https://${{ inputs.host }}/v2/dimensions/definition/versions${{ steps.validate-only.outputs.query_var }} -F data=@${{ inputs.file }} --header 'Content-Type: multipart/form-data' --header 'Authorization: ${{ inputs.api-key }}'
+        curl --fail-with-body --request POST --url https://${{ inputs.host }}/v2/dimensions/definition/versions?validate_only=${{ inputs.validate-only }} -F data=@${{ inputs.file }} --header 'Content-Type: multipart/form-data' --header 'Authorization: ${{ inputs.api-key }}'
       shell: bash
