@@ -12,9 +12,11 @@ inputs:
     required: true
   validate-only:
     description: If set to 'true', it will only validate the definitions. If set to 'false', then it will publish them
+    required: false
     default: 'false'
   host:
     description: The host address of the CloudZero platform
+    required: false
     default: api.cloudzero.com
 runs:
   using: "composite"
