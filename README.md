@@ -1,6 +1,6 @@
-# cloudzero-action-publish-costformation
+# Publish CloudZero CostFormation
 
-This is a GitHub action to publish CostFormation definitions to the CloudZero platform.
+This is a GitHub action to publish CloudZero CostFormation definitions to the CloudZero platform.
 It will only perform a full publish when running on a specified branch
 
 # Usage
@@ -10,7 +10,7 @@ It will only perform a full publish when running on a specified branch
         uses: Cloudzero/cloudzero-action-publish-costformation@v1
         with:
           file: <path to definitions file>
-          api-key: <ClouerZero platform API key (should be taken from environment secrets)>
+          api-key: <CloudZero platform API key (should be taken from environment secrets)>
           validate-only: <true|false>
 ```
 
@@ -20,7 +20,7 @@ It will only perform a full publish when running on a specified branch
 
 # Example workflow using publish actions
 
-name: Publish CostFormation
+name: Publish CloudZero CostFormation
 
 on:
   push:
