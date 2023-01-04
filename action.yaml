@@ -3,6 +3,9 @@
 
 name: Publish CloudZero CostFormation
 description: Publish a new version of CloudZero CostFormation dimensions to the CloudZero platform.
+branding:
+  icon: 'upload-cloud'
+  color: 'blue'
 inputs:
   file:
     description: The file containing the definitions
