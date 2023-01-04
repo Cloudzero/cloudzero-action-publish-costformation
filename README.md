@@ -7,7 +7,7 @@ It will only perform a full publish when running on a specified branch
 
 ```yaml
       - name: <name>
-        uses: Cloudzero/cloudzero-action-publish-costformation@v1
+        uses: Cloudzero/cloudzero-action-publish-costformation@v1.0.0
         with:
           file: <path to definitions file>
           api-key: <CloudZero platform API key (should be taken from environment secrets)>
@@ -38,7 +38,7 @@ jobs:
 
       - name: Validate Definitions
         if: github.ref != 'main'
-        uses: Cloudzero/cloudzero-action-publish-costformation@v1
+        uses: Cloudzero/cloudzero-action-publish-costformation@v1.0.0
         with:
           file: src/definitions.cz.yaml
           api-key: ${{ secrets.CZ_API_KEY }}
@@ -46,7 +46,7 @@ jobs:
 
       - name: Publish Definitions
         if: github.ref == 'main'
-        uses: Cloudzero/cloudzero-action-publish-costformation@v1
+        uses: Cloudzero/cloudzero-action-publish-costformation@v1.0.0
         with:
           file: src/definitions.cz.yaml
           api-key: ${{ secrets.CZ_API_KEY }}
