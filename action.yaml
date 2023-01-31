@@ -2,7 +2,7 @@
 # Licensed under the BSD-style license. See LICENSE file in the project root for full license information.
 
 name: Publish CloudZero CostFormation
-description: Publish a new version of CloudZero CostFormation dimensions to the CloudZero platform.
+description: Publish a new version of CloudZero CostFormation definition to the CloudZero platform.
 branding:
   icon: 'upload-cloud'
   color: 'blue'
@@ -26,5 +26,5 @@ runs:
   steps:
     - id: execute-curl
       run: |
-        curl --fail-with-body --request POST --url https://${{ inputs.host }}/v2/dimensions/definition/versions?validate_only=${{ inputs.validate-only }} -F data=@${{ inputs.file }} --header 'Content-Type: multipart/form-data' --header 'Authorization: ${{ inputs.api-key }}'
+        curl --fail-with-body --request POST --url https://${{ inputs.host }}/v2/costformation/definition/versions?validate_only=${{ inputs.validate-only }} -F data=@${{ inputs.file }} --header 'Content-Type: multipart/form-data' --header 'Authorization: ${{ inputs.api-key }}'
       shell: bash

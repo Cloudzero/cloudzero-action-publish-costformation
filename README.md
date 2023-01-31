@@ -7,7 +7,7 @@ It will only perform a full publish when running on a specified branch
 
 ```yaml
       - name: <name>
-        uses: Cloudzero/cloudzero-action-publish-costformation@v1.0.1
+        uses: Cloudzero/cloudzero-action-publish-costformation@v1.0.2
         with:
           file: <path to definitions file>
           api-key: <CloudZero platform API key (should be taken from environment secrets)>
@@ -38,7 +38,7 @@ jobs:
 
       ###########################
       # The next two job steps are configured to be mutually exclusive.
-      # 
+      #
       # "Validate Definitions" runs on all branches BUT main. This job step uses the publish API, but sets the field 'validate_only' to true
       # so that the definitions are not actually published, but only validated. NOTE: This step is not needed on main because the validation
       # will happen as part of the publish.
@@ -49,7 +49,7 @@ jobs:
 
       - name: Validate Definitions
         if: github.ref != 'main'  # Do not run this on the main branch because the 'Publish Definitions' step will perform the validation.
-        uses: Cloudzero/cloudzero-action-publish-costformation@v1.0.1
+        uses: Cloudzero/cloudzero-action-publish-costformation@v1.0.2
         with:
           file: src/definitions.cz.yaml
           api-key: ${{ secrets.CZ_API_KEY }}
@@ -57,7 +57,7 @@ jobs:
 
       - name: Publish Definitions
         if: github.ref == 'main'  # Only run this on the main branch so definitions that have not been reviewed are not actually published.
-        uses: Cloudzero/cloudzero-action-publish-costformation@v1.0.1
+        uses: Cloudzero/cloudzero-action-publish-costformation@v1.0.2
         with:
           file: src/definitions.cz.yaml
           api-key: ${{ secrets.CZ_API_KEY }}
